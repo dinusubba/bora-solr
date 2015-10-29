@@ -5,8 +5,8 @@ RUN apt-get update && \
   apt-get -y install lsof && \
   rm -rf /var/lib/apt/lists/*
 
-RUN  wget https://github.com/stedolan/jq/releases/download/jq-1.4/jq-linux-x86_64 &&\ 
-mv jq-linux-x86_64 /usr/bin/jq &&\
+RUN  wget https://github.com/stedolan/jq/releases/download/jq-1.4/jq-linux-x86_64 && \ 
+mv jq-linux-x86_64 /usr/bin/jq && \
 chmod a+x /usr/bin/jq
 
 
