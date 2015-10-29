@@ -5,6 +5,11 @@ RUN apt-get update && \
   apt-get -y install lsof && \
   rm -rf /var/lib/apt/lists/*
 
+RUN  wget https://github.com/stedolan/jq/releases/download/jq-1.4/jq-linux-x86_64 &&\ 
+mv jq-linux-x86_64 /usr/bin/jq &&\
+chmod a+x /usr/bin/jq
+
+
 ENV SOLR_USER solr
 ENV SOLR_UID 8983
 
@@ -26,7 +31,7 @@ RUN mkdir -p /opt/solr && \
   chown -R $SOLR_USER:$SOLR_USER /opt/solr
 
 # https://issues.apache.org/jira/browse/SOLR-8107
-RUN sed --in-place -e 's/^    "$JAVA" "${SOLR_START_OPTS\[@\]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG\[@\]}"/    exec "$JAVA" "${SOLR_START_OPTS[@]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG[@]}"/' /opt/solr/bin/solr
+#RUN sed --in-place -e 's/^    "$JAVA" "${SOLR_START_OPTS\[@\]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG\[@\]}"/    exec "$JAVA" "${SOLR_START_OPTS[@]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG[@]}"/' /opt/solr/bin/solr
 
 
 
