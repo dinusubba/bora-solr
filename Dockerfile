@@ -31,11 +31,11 @@ RUN mkdir -p /opt/solr && \
   chown -R $SOLR_USER:$SOLR_USER /opt/solr
 
 # https://issues.apache.org/jira/browse/SOLR-8107
-#RUN sed --in-place -e 's/^    "$JAVA" "${SOLR_START_OPTS\[@\]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG\[@\]}"/    exec "$JAVA" "${SOLR_START_OPTS[@]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG[@]}"/' /opt/solr/bin/solr
+RUN sed --in-place -e 's/^    "$JAVA" "${SOLR_START_OPTS\[@\]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG\[@\]}"/    exec "$JAVA" "${SOLR_START_OPTS[@]}" $SOLR_ADDL_ARGS -jar start.jar "${SOLR_JETTY_CONFIG[@]}"/' /opt/solr/bin/solr
 
 
 
 EXPOSE 8983
 WORKDIR /opt/solr
 USER $SOLR_USER
-CMD ["/opt/solr/bin/solr", "-f"]
+#CMD ["/opt/solr/bin/solr", "-f"]
